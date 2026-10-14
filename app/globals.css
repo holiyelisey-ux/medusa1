@@ -1,0 +1,180 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-abyss: var(--abyss);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  color-scheme: dark;
+  --background: oklch(0.16 0.035 228);
+  --abyss: oklch(0.1 0.025 235);
+  --foreground: oklch(0.96 0.02 200);
+  --card: oklch(0.22 0.04 225 / 0.55);
+  --card-foreground: oklch(0.96 0.02 200);
+  --primary: oklch(0.85 0.12 185);
+  --primary-foreground: oklch(0.16 0.035 228);
+  --secondary: oklch(0.26 0.04 225);
+  --secondary-foreground: oklch(0.96 0.02 200);
+  --muted: oklch(0.24 0.035 225);
+  --muted-foreground: oklch(0.72 0.04 210);
+  --accent: oklch(0.85 0.12 185);
+  --accent-foreground: oklch(0.16 0.035 228);
+  --border: oklch(0.96 0.02 200 / 0.12);
+  --input: oklch(0.96 0.02 200 / 0.15);
+  --ring: oklch(0.85 0.12 185);
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-abyss text-foreground font-sans;
+  }
+}
+
+@keyframes jelly-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  25% {
+    translate: 12px -28px;
+  }
+  50% {
+    translate: -6px -52px;
+  }
+  75% {
+    translate: -14px -22px;
+  }
+}
+
+@keyframes jelly-sway {
+  0%,
+  100% {
+    rotate: -3deg;
+  }
+  50% {
+    rotate: 3deg;
+  }
+}
+
+@keyframes jelly-pulse {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  35% {
+    transform: scale(1.045, 0.955);
+  }
+  65% {
+    transform: scale(0.975, 1.03);
+  }
+}
+
+@keyframes marine-snow {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--o, 0.6);
+  }
+  90% {
+    opacity: var(--o, 0.6);
+  }
+  100% {
+    transform: translate3d(var(--drift, 20px), -110vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes god-rays {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateX(0) skewX(-6deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateX(3%) skewX(-2deg);
+  }
+}
+
+@keyframes caustics {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 400px 200px, -300px 150px;
+  }
+}
+
+.jelly-float {
+  animation: jelly-float var(--dur, 10s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+.jelly-sway {
+  animation: jelly-sway calc(var(--dur, 10s) * 0.7) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  transform-origin: 50% 15%;
+}
+.jelly-pulse {
+  animation: jelly-pulse 2.6s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+  animation-delay: var(--delay, 0s);
+  transform-origin: 50% 25%;
+}
+.marine-snow {
+  animation: marine-snow var(--dur, 20s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+.god-rays {
+  animation: god-rays 12s ease-in-out infinite;
+}
+.caustics {
+  background-image:
+    radial-gradient(ellipse 120px 40px at 30% 40%, oklch(1 0 0 / 0.08), transparent 70%),
+    radial-gradient(ellipse 160px 50px at 70% 60%, oklch(1 0 0 / 0.06), transparent 70%);
+  background-size: 400px 200px, 300px 150px;
+  animation: caustics 18s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jelly-float,
+  .jelly-sway,
+  .jelly-pulse,
+  .marine-snow,
+  .god-rays,
+  .caustics {
+    animation: none;
+  }
+}
